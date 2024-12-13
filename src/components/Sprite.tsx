@@ -6,11 +6,9 @@ import GlowBox from "./GlowBox";
 const Sprite = () => {
     const ball = useRef<null | HTMLDivElement>(null);
     const ballContainer = useRef<null | HTMLDivElement>(null);
-    useEffect(() => {
-        if (ball.current === null || ballContainer.current === null) {
-            return;
-        }
+    const animationRef = useRef<number | null>(null);
 
+    useEffect(() => {
         let x =
             Math.random() *
             (ballContainer.current!.offsetWidth - ball.current!.offsetWidth);
@@ -54,9 +52,15 @@ const Sprite = () => {
             }
 
             ball.current!.style.transform = `translate(${x}px, ${y}px)`;
-            requestAnimationFrame(updateBallPosition);
+            animationRef.current = requestAnimationFrame(updateBallPosition);
         };
         updateBallPosition();
+
+        return () => {
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
+        };
     }, []);
     return (
         <GlowBox as={"div"} className="item rounded-xl relative" ref={ballContainer}>

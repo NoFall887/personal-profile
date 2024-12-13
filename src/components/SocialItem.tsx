@@ -13,7 +13,11 @@ const SocialItem = ({
         <TooltipProvider delayDuration={300}>
             <Tooltip>
                 <TooltipTrigger asChild={true}>
-                    <a href={url} className={cn(styles.socialitem, "social-icon p-2")}>
+                    <a
+                        href={url}
+                        className={cn(styles.socialitem, "social-icon p-2")}
+                        target="_blank"
+                    >
                         {children}
                     </a>
                 </TooltipTrigger>

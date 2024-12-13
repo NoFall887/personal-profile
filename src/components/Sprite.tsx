@@ -7,6 +7,10 @@ const Sprite = () => {
     const ball = useRef<null | HTMLDivElement>(null);
     const ballContainer = useRef<null | HTMLDivElement>(null);
     useEffect(() => {
+        if (ball.current === null || ballContainer.current === null) {
+            return;
+        }
+
         let x =
             Math.random() *
             (ballContainer.current!.offsetWidth - ball.current!.offsetWidth);
@@ -56,7 +60,10 @@ const Sprite = () => {
     }, []);
     return (
         <GlowBox as={"div"} className="item rounded-xl relative" ref={ballContainer}>
-            <div className="absolute rounded-[50%] w-10 h-10 bg-red-500" ref={ball}></div>
+            <div
+                className="absolute rounded-[50%] w-10 h-10 bg-transparent"
+                ref={ball}
+            ></div>
         </GlowBox>
     );
 };

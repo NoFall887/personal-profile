@@ -1,101 +1,68 @@
-import Image from "next/image";
+import ExperienceItem from "@/components/ExperienceItem";
+import GlowBox from "@/components/GlowBox";
+import IdFlag from "@/components/IdFlag";
+import LocationGreenDots from "@/components/LocationGreenDots";
+import LocationPin from "@/components/LocationPin";
+import Name from "@/components/Name";
+import Resume from "@/components/Resume";
+import Social from "@/components/Social";
+import Sprite from "@/components/Sprite";
+import Tool from "@/components/Tool";
+import { experiences, tools } from "@/lib/const";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    return (
+        <main
+            className="max-w-screen-lg bento-grid mx-auto mt-12 text-white"
+            style={{ perspective: "2000px" }}
+        >
+            <GlowBox
+                as={"div"}
+                className="item rounded-xl flex items-center justify-center py-4 px-3"
+            >
+                <Name />
+            </GlowBox>
+            <GlowBox as={"div"} className="item rounded-xl">
+                <p className=" leading-tight text-white/70 justify px-4 py-4">
+                    I&apos;m a CS freshgraduate with a strong interest in web development
+                    and hands-on experience in both front-end and back-end technologies.
+                </p>
+            </GlowBox>
+            <GlowBox as={"div"} className="item rounded-xl flex flex-col justify-center">
+                <h2 className="text-center font-semibold text-2xl pt-2 mb-3 relative z-20">
+                    Based in
+                </h2>
+                <LocationPin />
+                <div className="flex gap-2 items-center justify-center pb-3 mt-2">
+                    <LocationGreenDots />
+                    <p className="font-semibold text-xl">Indonesia</p>
+                    <IdFlag />
+                </div>
+            </GlowBox>
+            <GlowBox as={"div"} className="item rounded-xl px-0 py-3">
+                <h2 className="text-xl font-medium text-center px-4 mb-3">Experiences</h2>
+                {experiences.map((experience, idx) => {
+                    return <ExperienceItem key={idx} {...experience} />;
+                })}
+            </GlowBox>
+            <GlowBox as={"div"} className="item rounded-xl p-0  bg-blue-100 relative">
+                <Social />
+            </GlowBox>
+            <GlowBox as={"div"} className="item rounded-xl px-4 pt-3 pb-5 relative">
+                <Resume />
+            </GlowBox>
+            <GlowBox as={"div"} className="item rounded-xl py-3 pb-5 px-4">
+                <h2 className="text-white text-xl font-medium inline-block mb-3 coin">
+                    Tools I&apos;ve worked with
+                </h2>
+                <div className="gap-4 flex flex-wrap">
+                    {tools.map((tool, idx) => {
+                        return <Tool {...tool} key={idx} />;
+                    })}
+                </div>
+            </GlowBox>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+            <Sprite />
+        </main>
+    );
 }

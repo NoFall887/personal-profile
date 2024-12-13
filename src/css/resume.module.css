@@ -1,0 +1,15 @@
+@keyframes downloadarrow {
+    0% {
+        transform: translateY(-14px);
+        opacity: 0;
+    }
+    50%,
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.downloadarrow {
+    animation: downloadarrow 1.5s infinite ease-in;
+}

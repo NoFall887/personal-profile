@@ -22,7 +22,7 @@ const GlowBox = <T extends ElementType = "div">({
 
     const onMouseTilt = useCallback(
         throttle((e: React.MouseEvent) => {
-            const cardRect = usedRef!.getBoundingClientRect();
+            const cardRect = usedRef.current!.getBoundingClientRect();
             // Calculate the position of the mouse relative to the card's top-left corner
             const x = e.clientX - cardRect.left; // X coordinate within the card
             const y = e.clientY - cardRect.top; // Y coordinate within the card

@@ -10,7 +10,6 @@ const SocialItemEmail = ({
     url,
     desc,
     children,
-    type,
 }: { children: ReactNode } & socialType) => {
     const [copied, setCopied] = useState<boolean>(false);
 

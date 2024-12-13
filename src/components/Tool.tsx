@@ -1,7 +1,5 @@
 import { toolType } from "@/lib/const";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
-import styles from "@/css/tools.module.css";
-import { cn } from "@/lib/utils";
 
 const prefix = "/tools-icons";
 

@@ -8,7 +8,6 @@ const SocialItem = ({
     url,
     desc,
     children,
-    type,
 }: { children: ReactNode } & Omit<socialType, "icon">) => {
     return (
         <TooltipProvider delayDuration={300}>

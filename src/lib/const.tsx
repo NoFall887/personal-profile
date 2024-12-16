@@ -93,7 +93,6 @@ export const tools: toolType[] = [
     { desc: "GitHub", path: "/github.svg" },
     { desc: "TypeScript", path: "/typescript.svg" },
     { desc: "MongoDB", path: "/mongo.svg" },
-    { desc: "Prisma", path: "/prisma.svg" },
 ];
 
 export const resumePath = "/NaufalAmiruddinResume.pdf";

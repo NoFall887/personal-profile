@@ -1,22 +1,29 @@
 "use client";
 import { cn, throttle } from "@/lib/utils";
-import React, { ElementType, ReactNode, useCallback, useRef } from "react";
+import React, {
+    ComponentPropsWithRef,
+    ElementType,
+    ReactNode,
+    RefObject,
+    useCallback,
+    useRef,
+} from "react";
 
-type GlowBoxProps<T extends ElementType = "div"> = {
+type GlowBoxProps<T extends ElementType> = {
     as?: T;
     children?: ReactNode;
     tilt?: boolean;
     className?: string;
-} & React.ComponentPropsWithoutRef<T>;
+};
 
-const GlowBox = <T extends ElementType = "div">({
+const GlowBox = <T extends ElementType>({
     as,
     children,
     className,
     ref,
     tilt = true,
     ...props
-}: GlowBoxProps<T>) => {
+}: GlowBoxProps<T> & ComponentPropsWithRef<T>) => {
     const localRef = useRef<null | HTMLElement>(null);
     const usedRef = ref || localRef;
 

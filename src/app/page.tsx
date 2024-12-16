@@ -18,17 +18,17 @@ export default function Home() {
         >
             <GlowBox
                 as={"div"}
-                className="item rounded-xl flex items-center justify-center py-4 px-3"
+                className="item  flex items-center justify-center py-4 px-3"
             >
                 <Name />
             </GlowBox>
-            <GlowBox as={"div"} className="item rounded-xl">
+            <GlowBox as={"div"} className="item ">
                 <p className=" leading-tight text-white/70 justify px-4 py-4">
                     I&apos;m a CS freshgraduate with a strong interest in web development
                     and hands-on experience in both front-end and back-end technologies.
                 </p>
             </GlowBox>
-            <GlowBox as={"div"} className="item rounded-xl flex flex-col justify-center">
+            <GlowBox as={"div"} className="item  flex flex-col justify-center">
                 <h2 className="text-center font-semibold text-2xl pt-2 mb-3 relative z-20">
                     Based in
                 </h2>
@@ -39,19 +39,19 @@ export default function Home() {
                     <IdFlag />
                 </div>
             </GlowBox>
-            <GlowBox as={"div"} className="item rounded-xl px-0 py-3">
+            <GlowBox as={"div"} className="item  px-0 py-3">
                 <h2 className="text-xl font-medium text-center px-4 mb-3">Experiences</h2>
                 {experiences.map((experience, idx) => {
                     return <ExperienceItem key={idx} {...experience} />;
                 })}
             </GlowBox>
-            <GlowBox as={"div"} className="item rounded-xl p-0  bg-blue-100 relative">
+            <GlowBox as={"div"} className="item  p-0  bg-blue-100 relative">
                 <Social />
             </GlowBox>
-            <GlowBox as={"div"} className="item rounded-xl px-4 pt-3 pb-5 relative">
+            <GlowBox as={"div"} className="item  px-4 pt-3 pb-5 relative">
                 <Resume />
             </GlowBox>
-            <GlowBox as={"div"} className="item rounded-xl py-3 pb-5 px-4">
+            <GlowBox as={"div"} className="item  py-3 pb-5 px-4">
                 <h2 className="text-white text-xl font-medium inline-block mb-3 coin">
                     Tools I&apos;ve worked with
                 </h2>

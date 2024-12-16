@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Rubik } from "next/font/google";
 import Nav from "@/components/Nav";
+import { Toaster } from "@/components/ui/sonner";
 
 const rubik = Rubik({
     subsets: ["latin"],
@@ -24,7 +25,15 @@ export default function RootLayout({
                 className={`${rubik.className} antialiased bg-slate-900 min-h-screen pt-8`}
             >
                 <Nav />
-
+                <Toaster
+                    toastOptions={{
+                        style: {
+                            background: "rgb(30,41,59,1)",
+                            color: "white",
+                        },
+                    }}
+                    className=""
+                />
                 {children}
             </body>
         </html>

@@ -7,7 +7,7 @@ type GlowBoxProps<T extends ElementType = "div"> = {
     children?: ReactNode;
     tilt?: boolean;
     className?: string;
-} & React.ComponentPropsWithRef<T>;
+} & React.ComponentPropsWithoutRef<T>;
 
 const GlowBox = <T extends ElementType = "div">({
     as,
@@ -31,9 +31,12 @@ const GlowBox = <T extends ElementType = "div">({
             const centerY = cardRect.height / 2;
             // Calculate the rotation angles based on mouse position
             // Multiply by 15 for a stronger tilt effect
-            const rotateX = ((y - centerY) / centerY) * 5; // Tilt on the X-axis (up and down)
-            const rotateY = ((centerX - x) / centerX) * 5; // Tilt on the Y-axis (left and right)
-            usedRef.current!.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            if (tilt) {
+                const rotateX = ((y - centerY) / centerY) * 5; // Tilt on the X-axis (up and down)
+                const rotateY = ((centerX - x) / centerX) * 5; // Tilt on the Y-axis (left and right)
+                usedRef.current!.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            }
+
             usedRef.current!.style.setProperty("--glow-x", `${x}px`);
             usedRef.current!.style.setProperty("--glow-y", `${y}px`);
         }, 100),
@@ -47,12 +50,12 @@ const GlowBox = <T extends ElementType = "div">({
         <Component
             ref={usedRef}
             className={cn(
-                " bg-slate-800 relative  shadow-2xl p-[2px] transition-all duration-150 ease-linear group/card",
+                " bg-slate-800 relative  shadow-2xl p-[2px] transition-all duration-150 ease-linear group/card rounded-lg",
                 className || ""
             )}
             {...props}
-            onMouseMove={tilt ? onMouseTilt : undefined}
-            onMouseLeave={tilt ? onMouseUntilt : undefined}
+            onMouseMove={onMouseTilt}
+            onMouseLeave={onMouseUntilt}
             style={{ transformStyle: "preserve-3d", willChange: "transform" }}
         >
             <div className="absolute  rounded-[inherit] bg-white/5 inset-0 -z-40"></div>

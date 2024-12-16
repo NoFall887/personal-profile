@@ -1,6 +1,9 @@
 import { ReactNode } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
+
+export const myEmail = "naufalamiruddin123456@gmail.com";
+
 export type experienceType = {
     name: string;
     company: string;
@@ -71,8 +74,8 @@ export const socials: socialType[] = [
     },
     {
         icon: <MdMail />,
-        url: "naufalamiruddin123456@gmail.com",
-        desc: "naufalamiruddin123456@gmail.com",
+        url: myEmail,
+        desc: myEmail,
         type: "mail",
     },
 ];

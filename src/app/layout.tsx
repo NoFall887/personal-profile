@@ -48,6 +48,10 @@ export default function RootLayout({
                     className=""
                 />
                 {children}
+                <object
+                    className="mx-auto mt-10"
+                    data="https://img.shields.io/github/stars/NoFall887/personal-profile?style=flat&logo=github"
+                />
             </body>
         </html>
     );

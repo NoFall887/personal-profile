@@ -84,8 +84,7 @@ body {
 }
 
 .neon-pin {
-    filter: drop-shadow(0 0 3px #ffffff) drop-shadow(0 0 7px #ffffff)
-        ;
+    filter: drop-shadow(0 0 3px #ffffff) drop-shadow(0 0 7px #ffffff);
 }
 
 .neon-text {
@@ -103,6 +102,59 @@ body {
         "exp exp exp exp social social sprite location location"
         "exp exp exp exp social social sprite resume resume"
         "exp exp exp exp tools tools tools tools tools";
+}
+
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: auto;
+        gap: 12px;
+        grid-template-areas:
+            "name name name intro intro intro intro location location"
+            "exp exp exp exp social social social location location"
+            "exp exp exp exp social social social resume resume"
+            "exp exp exp exp tools tools tools tools tools";
+    }
+    .bento-grid .item:nth-child(8) {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: auto;
+        gap: 12px;
+        grid-template-areas:
+            "name name name name intro intro intro intro intro"
+            "exp exp exp exp exp exp social social social"
+            "exp exp exp exp exp exp social social social"
+            "exp exp exp exp exp exp location location location"
+            "exp exp exp exp exp exp resume resume resume"
+            "tools tools tools tools tools tools tools tools tools";
+    }
+    .bento-grid .item:nth-child(8) {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        gap: 12px;
+        grid-template-areas:
+            "name name"
+            "intro intro"
+            "location location"
+            "exp exp"
+            "social social"
+            "resume resume"
+            "tools tools";
+    }
+    .bento-grid .item:nth-child(8) {
+        display: none;
+    }
 }
 
 .bento-grid .item:nth-child(1) {

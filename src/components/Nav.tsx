@@ -44,7 +44,7 @@ const Nav = () => {
 
     const navContainer = useRef<HTMLUListElement | null>(null);
     return (
-        <nav className="text-white">
+        <nav className="text-white sticky top-3 z-50 lg:relative">
             <GlowBox
                 as="ul"
                 className="flex mx-auto rounded-2xl max-w-sm px-2 py-1 relative"

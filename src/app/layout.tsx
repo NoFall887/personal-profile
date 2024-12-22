@@ -35,7 +35,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${rubik.className} antialiased bg-slate-900 min-h-screen pt-8`}
+                className={`${rubik.className} antialiased bg-slate-900 min-h-screen pt-8 relative px-3`}
             >
                 <Nav />
                 <Toaster
@@ -49,7 +49,7 @@ export default function RootLayout({
                 />
                 {children}
                 <object
-                    className="mx-auto mt-10"
+                    className="mx-auto mt-10 mb-6"
                     data="https://img.shields.io/github/stars/NoFall887/personal-profile?style=flat&logo=github"
                 />
             </body>

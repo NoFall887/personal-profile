@@ -1,9 +1,10 @@
-const IdFlag = () => {
+const IdFlag = ({ className }: { className?: string }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="28"
             height="28"
+            className={className}
             viewBox="0 0 32 32"
         >
             <path

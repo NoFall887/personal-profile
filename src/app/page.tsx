@@ -13,7 +13,7 @@ import { experiences, tools } from "@/lib/const";
 export default function Home() {
     return (
         <main
-            className="max-w-screen-lg bento-grid mx-auto mt-12 text-white"
+            className="max-w-screen-lg bento-grid mx-auto mt-8 text-white"
             style={{ perspective: "2000px" }}
         >
             <GlowBox
@@ -23,24 +23,26 @@ export default function Home() {
                 <Name />
             </GlowBox>
             <GlowBox as={"div"} className="item ">
-                <p className=" leading-tight text-white/70 justify px-4 py-4">
+                <p className="text-base sm:text-sm lg:text-base leading-tight text-white/70 justify px-4 py-4">
                     I&apos;m a CS freshgraduate with a strong interest in web development
                     and hands-on experience in both front-end and back-end technologies.
                 </p>
             </GlowBox>
-            <GlowBox as={"div"} className="item  flex flex-col justify-center">
-                <h2 className="text-center font-semibold text-2xl pt-2 mb-3 relative z-20">
+            <GlowBox as={"div"} className="item  flex flex-col justify-center px-3">
+                <h2 className="text-center font-semibold text-xl lg:text-2xl pt-2 mb-3 relative z-20">
                     Based in
                 </h2>
                 <LocationPin />
                 <div className="flex gap-2 items-center justify-center pb-3 mt-2">
                     <LocationGreenDots />
-                    <p className="font-semibold text-xl">Indonesia</p>
-                    <IdFlag />
+                    <p className="font-semibold text-lg lg:text-xl">Indonesia</p>
+                    <IdFlag className="w-6 h-6" />
                 </div>
             </GlowBox>
             <GlowBox as={"div"} className="item  px-0 py-3">
-                <h2 className="text-xl font-medium text-center px-4 mb-3">Experiences</h2>
+                <h2 className="text-xl font-medium text-center px-4 mb-1 lg:mb-3">
+                    Experiences
+                </h2>
                 {experiences.map((experience, idx) => {
                     return <ExperienceItem key={idx} {...experience} />;
                 })}

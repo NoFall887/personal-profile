@@ -37,7 +37,7 @@ const ExperienceItem = ({
                 </div>
             </PopoverTrigger>
             <PopoverContent
-                side="right"
+                side="bottom"
                 className="bg-gradient-to-tr from-slate-100 to-slate-300 max-w-md w-full"
             >
                 <p className="mb-2">

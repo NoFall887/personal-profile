@@ -38,7 +38,7 @@ I graduated with a **3.9 GPA**, demonstrating my dedication to academic excellen
         company: "M-Knows Consulting",
         location: "South Tangerang",
         dateStart: new Date("2023-02-01"),
-        dateStop: new Date("2023-07-01"),
+        dateStop: new Date("2023-06-01"),
         stack: ["NodeJs", "ExpressJs", "PostgreSQL", "Docker", "GCP", "Swagger"],
         description: `During this internship, I'm involved in the development of the API of a Learning Management System (LMS).
 - Designed and implemented a scalable database schema ensuring data integrity, security, and efficient query performance.
@@ -95,7 +95,7 @@ export const tools: toolType[] = [
     { desc: "MongoDB", path: "/mongo.svg" },
 ];
 
-export const resumePath = "/NaufalAmiruddinResume.pdf";
+export const resumePath = "/Naufalamiruddinresume.pdf";
 
 const expDateFormatter = new Intl.DateTimeFormat("en-US", {
     month: "short",

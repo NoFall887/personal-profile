@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { overlayPositionStateType } from "./Nav";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 const NavItem = ({
@@ -15,7 +15,7 @@ const NavItem = ({
     const navItem = useRef<HTMLLIElement | null>(null);
     const pathName = usePathname();
 
-    const calculateOverlay = () => {
+    const calculateOverlay = useCallback(() => {
         const containerRect = container.current!.getBoundingClientRect();
         const itemRect = navItem.current!.getBoundingClientRect();
 
@@ -24,7 +24,7 @@ const NavItem = ({
         const rightPercent =
             ((containerRect.right - itemRect.right) / containerRect.width) * 100;
         return { left: leftPercent, right: rightPercent };
-    };
+    }, [container]);
 
     const handleHover = () => {
         setPosition((prev) => {
@@ -40,18 +40,13 @@ const NavItem = ({
             };
         });
     };
-    const setInit = () => {
-        setPosition((prev) => {
-            return { ...prev, init: calculateOverlay() };
-        });
-    };
 
     useEffect(() => {
         if (pathName === data.href) {
             const overlayPost = calculateOverlay();
             setPosition({ init: overlayPost, current: overlayPost });
         }
-    }, []);
+    }, [pathName]);
     return (
         <li
             className="flex-1 text-center"
@@ -59,7 +54,7 @@ const NavItem = ({
             onMouseEnter={handleHover}
             onMouseLeave={handleHoverOut}
         >
-            <Link className="p-4 block w-full" href={data.href} onClick={setInit}>
+            <Link className="p-4 block w-full" href={data.href}>
                 {data.text}
             </Link>
         </li>

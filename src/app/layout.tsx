@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Rubik } from "next/font/google";
-import Nav from "@/components/Nav";
 import { Toaster } from "@/components/ui/sonner";
 
 const rubik = Rubik({
@@ -35,9 +34,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${rubik.className} antialiased bg-slate-900 min-h-screen pt-4 relative px-3`}
+                className={`${rubik.className} antialiased bg-slate-900 min-h-screen relative px-3`}
             >
-                <Nav />
                 <Toaster
                     toastOptions={{
                         style: {
@@ -48,10 +46,6 @@ export default function RootLayout({
                     className=""
                 />
                 {children}
-                <object
-                    className="mx-auto mt-4 mb-6"
-                    data="https://img.shields.io/github/stars/NoFall887/personal-profile?style=flat&logo=github"
-                />
             </body>
         </html>
     );

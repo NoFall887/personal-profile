@@ -29,6 +29,7 @@ const DialogForm = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> })
             name: "",
             description: "",
             stacks: [],
+            url: "",
         },
     });
     function closeAndRefetch() {
@@ -84,6 +85,19 @@ const DialogForm = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> })
                         control={form.control}
                         name="stacks"
                         setVal={form.setValue}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="url"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>URL</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Project URL" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
                     />
                     <FormField
                         control={form.control}

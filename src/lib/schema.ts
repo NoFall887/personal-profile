@@ -15,4 +15,5 @@ export const projectSchema = z.object({
     description: z.string().min(1, { message: "Description is required" }),
     image: z.instanceof(File),
     stacks: z.array(z.string()).min(1, { message: "Stacks is required" }),
+    url: z.string().url({ message: "Invalid URL" }),
 });

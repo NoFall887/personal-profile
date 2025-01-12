@@ -12,7 +12,7 @@ export const addProject = async (projectForm: z.infer<typeof projectSchema>) => 
         throw new Error(projectData.error.message);
     }
 
-    const { name, description, stacks, image } = projectData.data;
+    const { name, description, stacks, image, url } = projectData.data;
     const { data, error } = await supabase.storage
         .from("project")
         .upload(`public/${new Date().getTime()}${image.name}`, image);
@@ -26,6 +26,7 @@ export const addProject = async (projectForm: z.infer<typeof projectSchema>) => 
         description,
         stacks,
         image: imageurl,
+        url,
     });
 
     return { status: "success", data: { name, description, stacks, image: imageurl } };

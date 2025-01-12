@@ -8,6 +8,7 @@ export const project = pgTable("project", {
     description: text("description"),
     image: text("image").notNull(),
     stacks: text("stacks").array().notNull(),
+    url: text("url").notNull(),
     createdAt: timestamp("createdAt", { mode: "date" }),
     updatedAt: timestamp("updatedAt", { mode: "date" }),
 });

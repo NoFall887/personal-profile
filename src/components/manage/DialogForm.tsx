@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -17,21 +16,36 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import TagsInput from "./TagsInput";
+import { addProject } from "@/action/project";
+import { Dispatch, SetStateAction, useTransition } from "react";
+import { useSWRConfig } from "swr";
 
-const DialogForm = () => {
+const DialogForm = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) => {
+    const { mutate } = useSWRConfig();
+    const [isPending, startTransition] = useTransition();
     const form = useForm<z.infer<typeof projectSchema>>({
         resolver: zodResolver(projectSchema),
         defaultValues: {
             name: "",
             description: "",
-            image: "",
             stacks: [],
         },
     });
-    function onSubmit(values: z.infer<typeof projectSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values);
+    function closeAndRefetch() {
+        setOpen(false);
+        mutate("/api/projects");
+    }
+    async function onSubmit(values: z.infer<typeof projectSchema>) {
+        startTransition(async () => {
+            await addProject(values)
+                .then(() => {
+                    closeAndRefetch();
+                })
+                .catch((error) => {
+                    closeAndRefetch();
+                    console.error(error);
+                });
+        });
     }
     return (
         <DialogContent className="bg-slate-950 text-white">
@@ -71,7 +85,31 @@ const DialogForm = () => {
                         name="stacks"
                         setVal={form.setValue}
                     />
-                    <Button type="submit" className="w-full">
+                    <FormField
+                        control={form.control}
+                        name="image"
+                        render={({ field: { value, onChange, ...fieldProps } }) => (
+                            <FormItem>
+                                <FormLabel>Description</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="Project description"
+                                        {...fieldProps}
+                                        onChange={(event) =>
+                                            onChange(
+                                                event.target.files &&
+                                                    event.target.files[0]
+                                            )
+                                        }
+                                        accept="image/*"
+                                        type="file"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <Button disabled={isPending} type="submit" className="w-full">
                         Submit
                     </Button>
                 </form>

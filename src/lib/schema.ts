@@ -13,6 +13,6 @@ export const loginSchema = z.object({
 export const projectSchema = z.object({
     name: z.string().min(1, { message: "Name is required" }),
     description: z.string().min(1, { message: "Description is required" }),
-    image: z.string().min(1, { message: "Image is required" }),
+    image: z.instanceof(File),
     stacks: z.array(z.string()).min(1, { message: "Stacks is required" }),
 });

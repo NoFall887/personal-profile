@@ -72,7 +72,6 @@ const TagsInput = <
             <Controller
                 {...props}
                 render={({ field }) => {
-                    console.log(field.value);
                     return (
                         <FormItem>
                             <FormLabel>Techs</FormLabel>
@@ -107,7 +106,7 @@ const TagsInput = <
                                                 props.name,
                                                 field.value.concat(target.value)
                                             );
-                                            // target.value = "";
+                                            target.value = "";
                                         }
                                     }}
                                 />

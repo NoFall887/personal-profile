@@ -16,11 +16,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import TagsInput from "./TagsInput";
-import { addProject } from "@/action/project";
-import { Dispatch, SetStateAction, useTransition } from "react";
+import { addProject, updateProject } from "@/action/project";
+import { Dispatch, SetStateAction, useEffect, useTransition } from "react";
 import { useSWRConfig } from "swr";
+import { projectDataType } from "@/app/manage/page";
 
-const DialogForm = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) => {
+const DialogForm = ({
+    setOpen,
+    formData,
+}: {
+    setOpen: Dispatch<SetStateAction<boolean>>;
+    formData: projectDataType | null;
+}) => {
     const { mutate } = useSWRConfig();
     const [isPending, startTransition] = useTransition();
     const form = useForm<z.infer<typeof projectSchema>>({
@@ -32,20 +39,45 @@ const DialogForm = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> })
             url: "",
         },
     });
+
     function closeAndRefetch() {
         setOpen(false);
         mutate("/api/projects");
     }
+
+    useEffect(() => {
+        if (formData) {
+            form.reset(formData.data);
+        } else {
+            form.reset({
+                name: "",
+                description: "",
+                stacks: [],
+                url: "",
+            });
+        }
+    }, [formData]);
     async function onSubmit(values: z.infer<typeof projectSchema>) {
         startTransition(async () => {
-            await addProject(values)
-                .then(() => {
-                    closeAndRefetch();
-                })
-                .catch((error) => {
-                    closeAndRefetch();
-                    console.error(error);
-                });
+            if (formData) {
+                await updateProject(formData.id, values)
+                    .then(() => {
+                        closeAndRefetch();
+                    })
+                    .catch((error) => {
+                        closeAndRefetch();
+                        console.error(error);
+                    });
+            } else {
+                await addProject(values)
+                    .then(() => {
+                        closeAndRefetch();
+                    })
+                    .catch((error) => {
+                        closeAndRefetch();
+                        console.error(error);
+                    });
+            }
         });
     }
     return (
@@ -110,10 +142,7 @@ const DialogForm = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> })
                                         placeholder="Project description"
                                         {...fieldProps}
                                         onChange={(event) =>
-                                            onChange(
-                                                event.target.files &&
-                                                    event.target.files[0]
-                                            )
+                                            onChange(event.target.files?.[0])
                                         }
                                         accept="image/*"
                                         type="file"

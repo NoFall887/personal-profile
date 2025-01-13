@@ -34,7 +34,7 @@ export const addProject = async (projectForm: z.infer<typeof projectSchema>) => 
         image: imageurl || null,
         url,
     });
-
+    revalidateTag("projects");
     return { status: "success", data: { name, description, stacks, image: imageurl } };
 };
 

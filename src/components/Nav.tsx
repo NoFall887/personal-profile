@@ -52,9 +52,13 @@ const Nav = () => {
             >
                 <motion.div
                     className="w-full h-full bg-white absolute top-0 left-0 text-black flex pointer-events-none px-2 py-1"
-                    initial={{ clipPath: `inset(12% 0% 12% 100% round 12px)` }}
+                    initial={{
+                        clipPath: `inset(12% 0% 12% 100% round 12px)`,
+                        opacity: 0,
+                    }}
                     animate={{
                         clipPath: `inset(12% ${overlayPosition.current.right}% 12% ${overlayPosition.current.left}% round 10px)`,
+                        opacity: 1,
                     }}
                 >
                     {navItem.map((item, idx) => {

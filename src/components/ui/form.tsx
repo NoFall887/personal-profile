@@ -24,7 +24,7 @@ type FormFieldContextValue<
     name: TName;
 };
 
-const FormFieldContext = React.createContext<FormFieldContextValue>(
+export const FormFieldContext = React.createContext<FormFieldContextValue>(
     {} as FormFieldContextValue
 );
 
@@ -94,11 +94,7 @@ const FormLabel = React.forwardRef<
     return (
         <Label
             ref={ref}
-            className={cn(
-                error && "text-destructive",
-                className,
-                "font-light text-base "
-            )}
+            className={cn(error && "text-destructive", className, "font-light text-sm")}
             htmlFor={formItemId}
             {...props}
         />
